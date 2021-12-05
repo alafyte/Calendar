@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <stdio.h>
 #include <conio.h>
 #include <time.h>
 #pragma warning(disable : 4996) //_CRT_SECURE_NO_WARNINGS
@@ -28,9 +29,11 @@ int main()
 		cout << "n дл€ переключени€ на следующий год" << endl;
 		cout << "p дл€ предыдущего года" << endl;
 		cout << "e дл€ выхода" << endl;
+		cout << "h дл€ выбора года" << endl;
 
 		option = getche();
-
+		cout << endl;
+		
 		switch (option) {
 		case 'n':
 			year++;
@@ -40,6 +43,11 @@ int main()
 			break;
 		case 'e':
 			exit(0);
+		case 'h':
+			printf("¬ведите год\n");
+			scanf_s("%i", &year);
+			printCalendar(year);
+			break;
 		}
 	}
 		while (option != 'e' && option != 'E');
