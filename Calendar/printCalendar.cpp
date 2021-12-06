@@ -1,15 +1,18 @@
 #include <iostream>
 #include <iomanip>
 #include <conio.h>
-#pragma warning(disable : 4996) //_CRT_SECURE_NO_WARNINGS
+#include <time.h>
+#pragma warning(disable : 4996)
+
 
 using namespace std;
+
 
 void printCalendar(int year) {
 	setlocale(LC_ALL, "Rus");
 	int mDays[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	string monthList[] = { "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" };
-
+	
 	cout << " -------------------------------------" << endl;
 	cout << "            Calendar - " << year << endl;
 	cout << " -------------------------------------" << endl << endl;
@@ -58,5 +61,24 @@ void printCalendar(int year) {
 		//текущий день
 		current = k;
 	}
+	cout << endl;
+	cout << " ---------------" << endl;
+	time_t ttime = time(0);
+	tm* local_time = localtime(&ttime);
+
+	int day = local_time->tm_wday;
+	int month = local_time->tm_mon;
+	int mday = local_time->tm_mday;
+
+	if (mday < 10)
+	{
+		cout << "Сегодня:" << '0' << mday << ".";
+		if (month < 10)
+		{
+			cout << '0' << month << "." << year << endl;
+		} else cout << month << "." << year << endl;;
+
+	} else cout << "Сегодня:" << mday << "." << month << "." << year << endl;
+	
 	return;
 }
